@@ -11,6 +11,7 @@ export type FeatureFlags = {
   isNotificationSystemEnabled: boolean;
   isCartV2Enabled: boolean;
   isTrustCenterEnabled: boolean;
+
 };
 
 export const LEGACY_FEATURE_FLAGS: FeatureFlags = {
@@ -26,4 +27,5 @@ export const LEGACY_FEATURE_FLAGS: FeatureFlags = {
   isNotificationSystemEnabled: false,
   isCartV2Enabled: true,
   isTrustCenterEnabled: false,
+
 };

@@ -17,6 +17,8 @@ export interface OrderCancelledMessage {
   payload: { orderId: string };
 }
 
+type MessageType = OrderCreatedMessage['type'] | OrderCancelledMessage['type'];
+
 export class MessageBus {
   private subscribers: any;
 

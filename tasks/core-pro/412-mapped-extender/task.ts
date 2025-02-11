@@ -3,13 +3,21 @@ type Person = {
   lastName: string;
 };
 
-type FieldExtender<T, K> = Person;
+
+
+type FieldExtender<T, K> = {
+  [P in keyof T]: {
+    value: T[P];
+
+  } & K;
+};
 
 type PersonUpdateHistory = FieldExtender<
   Person,
   {
     isUpdated: boolean;
     updatedAt: number | null;
+    qwe: string;
   }
 >;
 
@@ -18,10 +26,12 @@ export const history: PersonUpdateHistory = {
     value: 'John',
     isUpdated: false,
     updatedAt: null,
+    qwe: 'qwe',
   },
   lastName: {
     value: 'Doe',
     isUpdated: true,
     updatedAt: new Date().getTime(),
+    qwe: 'qwe',
   },
 };

@@ -9,5 +9,6 @@ export function terrainScanResults() {
   const result2: RewardRadar<SecondScan> = '20$';
   const result3: RewardRadar<ThirdScan> = null;
 
+
   return [result1, result2, result3];
 }

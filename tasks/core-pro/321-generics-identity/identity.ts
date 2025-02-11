@@ -55,4 +55,23 @@ class RedditIdentityProcessor {
   }
 }
 
-export class IdentityProcessor {}
+type Identity = GoogleIdentity | AppleIdentity | RedditIdentity;
+
+
+
+export class IdentityProcessor<T extends Identity> {
+  constructor(private readonly provider: string) {
+  }
+
+  findById(id: string): T | undefined {
+    return users.find((user) => user.id === id && user.provider === this.provider) as T
+  }
+
+  findByUserName(userName: string): T | undefined {
+    return users.find((user) => user.userName === userName && user.provider === this.provider) as T
+  }
+
+}
+
+type Test<T> = T extends string ? string : never;
+

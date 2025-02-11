@@ -12,7 +12,11 @@ type APIClient = {
   deleteOrder: (id: number) => void;
 };
 
-type JustGetters<T> = T;
+
+
+type JustGetters<T> = {
+  [Props in keyof T as Props extends `get${Capitalize<string>}` ? Props : never]: T[Props];
+}
 
 type APIClientGetters = JustGetters<APIClient>;
 

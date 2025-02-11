@@ -1,3 +1,4 @@
+// Start of Selection
 import { readFileSync } from 'fs';
 
 export function getProductCatalog() {
