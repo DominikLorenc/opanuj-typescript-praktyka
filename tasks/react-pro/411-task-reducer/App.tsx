@@ -1,8 +1,23 @@
 /* Dodaj brakujące typy do reducera (encja Task, stan i akcje) oraz komponentu TaskList. Wywnioskuj typy z zastanego kodu. */
 
-import { useReducer, useState } from 'react';
+import { useReducer, useState, Reducer } from 'react';
 
-const taskReducer = (state, action) => {
+interface Task {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+interface StateType {
+  tasks: Task[];
+}
+
+type TaskAction =
+  | { type: 'add'; payload: string }
+  | { type: 'remove'; payload: number }
+  | { type: 'toggle'; payload: number };
+
+const taskReducer: Reducer<StateType, TaskAction> = (state, action) => {
   switch (action.type) {
     case 'add':
       const newTask = { id: Date.now(), text: action.payload, completed: false };
@@ -16,12 +31,17 @@ const taskReducer = (state, action) => {
         ),
       };
     default:
-      throw new Error(`Unhandled action type: ${action.type}`);
+      const exhaustiveCheck: never = action;
+      throw new Error(`Unhandled action type: ${exhaustiveCheck}`);
   }
 };
 
+const initialState: StateType = {
+  tasks: [],
+};
+
 const TaskList = () => {
-  const [state, dispatch] = useReducer(taskReducer, { tasks: [] });
+  const [state, dispatch] = useReducer(taskReducer, initialState);
   const [newTask, setNewTask] = useState('');
 
   const handleAdd = () => {
