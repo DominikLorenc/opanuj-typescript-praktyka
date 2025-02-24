@@ -46,7 +46,7 @@ export default function App() {
           </div>
         ) : (
           <div data-testid="detailed-grid">
-            <PlanetsGrid as="main" columns={2}>
+            <PlanetsGrid as="main" columns={2} onClick={() => console.log('clicked')}>
               {(planet) => <DetailedCard planet={planet} />}
             </PlanetsGrid>
           </div>
